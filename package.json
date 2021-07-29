@@ -13,5 +13,9 @@
     "git-commit-msg-linter": "^3.2.6",
     "husky": "^7.0.1",
     "lint-staged": "^11.1.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^4.0.1"
   }
 }
