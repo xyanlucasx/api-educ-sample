@@ -9,6 +9,7 @@
   "author": "Yan Lucas Costa Vidal",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^7.31.0",
     "git-commit-msg-linter": "^3.2.6"
   }
 }
