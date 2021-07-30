@@ -3,6 +3,7 @@ dotenv.config();
 import mongoConnection from "./mongo.js";
 import express from "express";
 import { urlencoded, json } from "body-parser";
+import router from "./src/routes/index.js";
 
 await mongoConnection();
 
@@ -21,6 +22,8 @@ app.use(
 );
 
 app.use(json());
+
+app.use(router);
 
 app.listen(port, async () => {
   console.log("Running on port " + port);
