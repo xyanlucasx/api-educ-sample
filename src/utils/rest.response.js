@@ -8,7 +8,9 @@ export const responseCreated = (res, data) => {
 export const noContent = (res) => {
   res.status(204).send();
 };
-export const notFound = (res) => {};
+export const notFound = (res, customError) => {
+  res.status(404).send({ message: customError ? customError : "notFound" });
+};
 export const unauthorized = (res) => {};
 export const forbidden = (res) => {};
 
