@@ -9,6 +9,14 @@ export default async (req, res, next) => {
     const validFields = ["name", "teacher", "students"];
     const validBody = simpleModel(req.body, validFields);
 
+    validBody.teacher = {
+      name: req.payload.name,
+      teacherId: req.payload.id,
+      matriculationId: req.payload.matriculationId,
+    };
+
+    validBody.students = [];
+
     const newDocument = await global.mongo
       .collection("classes")
       .insertOne(validBody);
