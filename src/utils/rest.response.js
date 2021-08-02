@@ -11,7 +11,9 @@ export const noContent = (res) => {
 export const notFound = (res, customError) => {
   res.status(404).send({ message: customError ? customError : "notFound" });
 };
-export const unauthorized = (res) => {};
+export const responseUnauthorized = (res, customError) => {
+  res.status(401).send({ message: customError ? customError : "Unauthorized" });
+};
 export const responseForbidden = (res, customError) => {
   res.status(403).send({ message: customError ? customError : "Forbidden" });
 };
@@ -25,7 +27,3 @@ export const internalServerError = (res, customError) => {
     .status(500)
     .send({ message: customError ? customError : "Internal error" });
 };
-
-//export default {
-//    ok, created, noContent, notFound, unauthorized, forbidden, internalServerError
-//}
