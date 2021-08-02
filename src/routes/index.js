@@ -2,6 +2,8 @@ import express from "express";
 
 import authenticationPost from "../controllers/authentication/authentications.post.js";
 
+import checkAuth from "../middlewares/check.auth.js";
+
 import studentsGet from "../controllers/students/students.get.js";
 import teachersGet from "../controllers/teachers/teachers.get.js";
 import classesGet from "../controllers/classes/classes.get.js";
@@ -18,32 +20,42 @@ import studentsPatch from "../controllers/students/students.patch.js";
 import teachersPatch from "../controllers/teachers/teachers..patch.js";
 import classesPatch from "../controllers/classes/classes.patch.js";
 
+import insertStudent from "../controllers/classes/insert-student/insert.student.js";
+
 const router = express.Router();
 
 router.post("/authentication", authenticationPost);
 
-router.get("/students/:idResource*?", studentsGet);
+router.get(
+  "/students/:idResource*?",
+  checkAuth("students", "teachers"),
+  studentsGet
+);
 
-router.get("/teachers/:idResource*?", teachersGet);
+router.get("/teachers/:idResource*?", checkAuth("teachers"), teachersGet);
 
-router.get("/classes/:idResource*?", classesGet);
+router.get(
+  "/classes/:idResource*?",
+  checkAuth("students", "teachers"),
+  classesGet
+);
 
-router.post("/classes", classesPost);
+router.post("/classes", checkAuth("teachers"), classesPost);
 
-router.post("/students", studentsPost);
+router.post("/students", checkAuth("teachers"), studentsPost);
 
-router.post("/teachers", teachersPost);
+router.post("/teachers", checkAuth("teachers"), teachersPost);
 
-router.delete("/students/:idResource", studentsDelete);
+router.delete("/students/:idResource", checkAuth("teachers"), studentsDelete);
 
-router.delete("/classes/:idResource", classesDelete);
+router.delete("/classes/:idResource", checkAuth("teachers"), classesDelete);
 
-router.delete("/teachers/:idResource", teachersDelete);
+router.delete("/teachers/:idResource", checkAuth("teachers"), teachersDelete);
 
-router.patch("/students/:idResource", studentsPatch);
+router.patch("/students/:idResource", checkAuth("teachers"), studentsPatch);
 
-router.patch("/teachers/:idResource", teachersPatch);
+router.patch("/teachers/:idResource", checkAuth("teachers"), teachersPatch);
 
-router.patch("/classes/:idResource", classesPatch);
+router.patch("/classes/:idResource", checkAuth("teachers"), classesPatch);
 
 export default router;
