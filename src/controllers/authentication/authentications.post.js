@@ -25,7 +25,7 @@ export default async (req, res, next) => {
     const payload = {
       userName: req.body.userName,
       type: req.body.type,
-      name: req.body.name,
+      name: user[0].name,
       id: user[0]._id,
       matriculationId: user[0].matriculationId,
       exp: oneHourInMs * 24,
