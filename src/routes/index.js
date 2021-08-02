@@ -1,4 +1,7 @@
 import express from "express";
+
+import authenticationPost from "../controllers/authentication/authentications.post.js";
+
 import studentsGet from "../controllers/students/students.get.js";
 import teachersGet from "../controllers/teachers/teachers.get.js";
 import classesGet from "../controllers/classes/classes.get.js";
@@ -16,6 +19,8 @@ import teachersPatch from "../controllers/teachers/teachers..patch.js";
 import classesPatch from "../controllers/classes/classes.patch.js";
 
 const router = express.Router();
+
+router.post("/authentication", authenticationPost);
 
 router.get("/students/:idResource*?", studentsGet);
 
