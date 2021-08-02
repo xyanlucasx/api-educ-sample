@@ -3,8 +3,8 @@ import { compareHash } from "../../utils/hash.bcrypt.js";
 import {
   notFound,
   responseForbidden,
-  ok,
-  internalServerError,
+  responseOk,
+  responseInternalServerError,
 } from "../../utils/rest.response.js";
 
 export default async (req, res, next) => {
@@ -35,9 +35,9 @@ export default async (req, res, next) => {
 
     const jwtToken = jwt.sign(payload, jwtSecret);
 
-    ok(res, { token: jwtToken, payload });
+    responseOk(res, { token: jwtToken, payload });
   } catch (e) {
     console.log(e);
-    internalServerError(res);
+    responseInternalServerError(res);
   }
 };

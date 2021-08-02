@@ -1,9 +1,9 @@
 import simpleModel from "../../utils/simple.model.js";
 import mountQuery from "../../utils/mount.query.js";
 import {
-  ok,
+  responseOk,
   notFound,
-  internalServerError,
+  responseInternalServerError,
 } from "../../utils/rest.response.js";
 
 export default async (req, res, next) => {
@@ -22,10 +22,10 @@ export default async (req, res, next) => {
       .collection("classes")
       .updateOne(mountQuery(req), { $set: validBody });
 
-    if (updatedDocumentInfos.modifiedCount == 1) ok(res, updatedDocumentInfos);
+    if (updatedDocumentInfos.modifiedCount == 1) responseOk(res, updatedDocumentInfos);
     else notFound("class not found");
   } catch (e) {
     console.log(e);
-    internalServerError(res);
+    responseInternalServerError(res);
   }
 };

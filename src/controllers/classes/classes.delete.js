@@ -1,8 +1,8 @@
 import mountQuery from "../../utils/mount.query.js";
 import {
-  ok,
+  responseOk,
   notFound,
-  internalServerError,
+  responseInternalServerError,
 } from "../../utils/rest.response.js";
 
 export default async (req, res, next) => {
@@ -11,10 +11,10 @@ export default async (req, res, next) => {
       .collection("classes")
       .deleteOne(mountQuery(req));
 
-    if (deletedInfos.deletedCount == 1) ok(res, deletedInfos);
+    if (deletedInfos.deletedCount == 1) responseOk(res, deletedInfos);
     else notFound(res, "class not found");
   } catch (e) {
     console.log(e);
-    internalServerError(res);
+    responseInternalServerError(res);
   }
 };

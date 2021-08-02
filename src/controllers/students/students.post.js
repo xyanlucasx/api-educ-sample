@@ -1,6 +1,7 @@
 import {
   responseCreated,
   responseBadRequest,
+  responseInternalServerError
 } from "../../utils/rest.response.js";
 import simpleModel from "../../utils/simple.model.js";
 import { hashValue } from "../../utils/hash.bcrypt.js";
@@ -31,6 +32,6 @@ export default async (req, res, next) => {
     console.log(e);
     if (e.message.indexOf("is required") != -1)
       responseBadRequest(res, e.message);
-    else internalServerError(res);
+    else responseInternalServerError(res);
   }
 };

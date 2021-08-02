@@ -1,4 +1,4 @@
-export const ok = (res, data) => {
+export const responseOk = (res, data) => {
   res.status(200).send(data);
 };
 
@@ -22,7 +22,7 @@ export const responseBadRequest = (res, customError) => {
   res.status(400).send({ message: customError ? customError : "Bad request" });
 };
 
-export const internalServerError = (res, customError) => {
+export const responseInternalServerError = (res, customError) => {
   res
     .status(500)
     .send({ message: customError ? customError : "Internal error" });

@@ -1,5 +1,8 @@
 import { ObjectId } from "mongodb";
-import { ok, internalServerError } from "../../../utils/rest.response.js";
+import {
+  responseOk,
+  responseInternalServerError,
+} from "../../../utils/rest.response.js";
 export default async (req, res, next) => {
   try {
     const queryStudent = { _id: new ObjectId(req.body.idStudent) };
@@ -66,9 +69,9 @@ export default async (req, res, next) => {
         },
       });
 
-    ok(res, { message: "class updated successfully" });
+    responseOk(res, { message: "class updated successfully" });
   } catch (e) {
     console.log(e);
-    internalServerError(res);
+    responseInternalServerError(res);
   }
 };
