@@ -12,7 +12,9 @@ export const notFound = (res, customError) => {
   res.status(404).send({ message: customError ? customError : "notFound" });
 };
 export const unauthorized = (res) => {};
-export const forbidden = (res) => {};
+export const responseForbidden = (res, customError) => {
+  res.status(403).send({ message: customError ? customError : "Forbidden" });
+};
 
 export const responseBadRequest = (res, customError) => {
   res.status(400).send({ message: customError ? customError : "Bad request" });
