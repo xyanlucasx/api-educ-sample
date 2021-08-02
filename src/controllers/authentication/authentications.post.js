@@ -26,6 +26,8 @@ export default async (req, res, next) => {
       userName: req.body.userName,
       type: req.body.type,
       name: req.body.name,
+      id: user[0]._id,
+      matriculationId: user[0].matriculationId,
       exp: oneHourInMs * 24,
     };
 
@@ -33,7 +35,7 @@ export default async (req, res, next) => {
 
     const jwtToken = jwt.sign(payload, jwtSecret);
 
-    ok(res, { token: jwtToken });
+    ok(res, { token: jwtToken, payload });
   } catch (e) {
     console.log(e);
     internalServerError(res);
