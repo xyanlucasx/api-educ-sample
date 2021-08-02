@@ -58,4 +58,6 @@ router.patch("/teachers/:idResource", checkAuth("teachers"), teachersPatch);
 
 router.patch("/classes/:idResource", checkAuth("teachers"), classesPatch);
 
+router.post("/classes/insert-student", checkAuth("teachers"), insertStudent);
+
 export default router;
