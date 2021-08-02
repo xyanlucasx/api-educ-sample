@@ -16,6 +16,8 @@ export default async (req, res, next) => {
     ];
     const validBody = simpleModel(req.body, validFields);
 
+    validBody.classes = [];
+
     const hashPassword = await hashValue(validBody.password);
     validBody.password = hashPassword;
 

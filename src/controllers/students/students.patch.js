@@ -21,6 +21,8 @@ export default async (req, res, next) => {
 
     const validBody = simpleModel(req.body, validFields, noRequired);
 
+    delete validBody.classes;
+
     if (validBody.password) {
       const hashPassword = await hashValue(validBody.password);
       validBody.password = hashPassword;

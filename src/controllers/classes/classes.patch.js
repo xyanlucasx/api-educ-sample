@@ -14,6 +14,10 @@ export default async (req, res, next) => {
 
     const validBody = simpleModel(req.body, validFields, noRequired);
 
+    delete validBody.students;
+
+    delete validBody.teacher;
+
     const updatedDocumentInfos = await global.mongo
       .collection("classes")
       .updateOne(mountQuery(req), { $set: validBody });
